@@ -1,0 +1,17 @@
+{
+    "products": [
+      {
+        "id": 1,
+        "name": "Produto A",
+        "manufacturer": "Fabricante X",
+        "origin": "Brasil",
+        "package": "Caixa",
+        "currency": "BRL",
+        "priceInside": 50.0,
+        "priceOutside": 55.0,
+        "ipi": true,
+        "ipiRate": 10
+      }
+    ]
+  }
+  
