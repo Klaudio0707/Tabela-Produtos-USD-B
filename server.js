@@ -17,7 +17,7 @@ const readData = () => {
 }
 // função para escrever dados no json
 const writeData = (data) => {
-    fs.weiteFileSync(DATA_FILE, JSON.stringify(data, null, 2));
+    fs.writeFileSync(DATA_FILE, JSON.stringify(data, null, 2));
 };
 
 //Rota get -- listar produtos
@@ -44,7 +44,7 @@ app.put('/products/:id', (req, res) => {
     if (index === -1) {
         return res.status(404).json({ error: "Produto não encontrado" });
     }
-    products[index] = { id: parseInd(id), ...req.body };
+    products[index] = { id: parseInt(id), ...req.body };
     writeData(products);
     res.json(products[index]);
 });
