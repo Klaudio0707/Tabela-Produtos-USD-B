@@ -1,16 +1,16 @@
 {
   "products": [
     {
-      "id": 1737125672942,
-      "name": "goma xantana",
-      "manufacturer": "fufeng",
-      "origin": "china",
-      "package": "25kg",
-      "currency": "BRL",
-      "priceInside": "25",
-      "priceOutside": "10",
-      "ipi": true,
-      "ipiRate": "3,25%"
+      "id": 1737146779371,
+      "name": "Acido Ascorbico",
+      "manufacturer": "Shandong Luwei",
+      "origin": "China",
+      "package": "25kg - Caixa",
+      "currency": "USD",
+      "priceInside": "6.0000",
+      "priceOutside": "5.0000",
+      "ipi": false,
+      "ipiRate": 0
     }
   ]
 }

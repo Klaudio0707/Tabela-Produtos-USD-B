@@ -25,7 +25,6 @@ const readData = () => {
 // função para escrever dados no json
 const writeData = (data) => {
     const jsonData = { products: data };
-    console.log("Write Data:", jsonData);
     fs.writeFileSync(DATA_FILE, JSON.stringify(jsonData, null, 2));
 };
 
