@@ -12,12 +12,21 @@ app.use(bodyParser.json());
 
 //leitura do arquivo json
 const readData = () => {
-    const data = fs.readFileSync(DATA_FILE, 'utf8');
-    return JSON.parse(data);
-}
+    try {
+        const data = fs.readFileSync(DATA_FILE, 'utf8');
+        const parsedData = JSON.parse(data);
+        return parsedData.products || []; // Retorna o array de produtos
+    } catch (error) {
+        console.error("Erro ao ler os dados:", error.message);
+        return []; // Retorna um array vazio se houver erro
+    }
+};
+
 // função para escrever dados no json
 const writeData = (data) => {
-    fs.writeFileSync(DATA_FILE, JSON.stringify(data, null, 2));
+    const jsonData = { products: data };
+    console.log("Write Data:", jsonData);
+    fs.writeFileSync(DATA_FILE, JSON.stringify(jsonData, null, 2));
 };
 
 //Rota get -- listar produtos
@@ -50,22 +59,22 @@ app.put('/products/:id', (req, res) => {
 });
 
 app.delete('/products/:id', (req, res) => {
-const {id} = req.params;
-const products = readData();
-const index = products.findIndex((p) => p.id === parseInt(id));
+    const { id } = req.params;
+    const products = readData();
+    const index = products.findIndex((p) => p.id === parseInt(id));
 
-if(index === -1){
-return res.status(404).json({error: "produto não encontrado"});
+    if (index === -1) {
+        return res.status(404).json({ error: "produto não encontrado" });
 
-}
-const deletedProduct = products.splice(index, 1); // Remove o produto da lista
-writeData(products); // Salva os dados atualizados no arquivo
-res.json(deletedProduct[0]); // Retorna o produto deletado
+    }
+    const deletedProduct = products.splice(index, 1); // Remove o produto da lista
+    writeData(products); // Salva os dados atualizados no arquivo
+    res.json(deletedProduct[0]); // Retorna o produto deletado
 
 
 })
 
 app.listen(PORT, () => {
-console.log(`Servidor rodando na porta ${PORT}`);
+    console.log(`Servidor rodando na porta ${PORT}`);
 
 });
