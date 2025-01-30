@@ -1,6 +1,3 @@
-//acredito que est[a faltando schema
-
-
 const mongoose = require('mongoose');
 
 const productSchema = new mongoose.Schema({

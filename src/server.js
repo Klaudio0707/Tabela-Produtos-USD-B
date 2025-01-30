@@ -3,22 +3,23 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 require('dotenv').config();
 
-const productsRoutes = require('./models/products');
+// Importando as rotas de produtos
+const productsRoutes = require('./routes/products');
 
 const app = express();
 const PORT = process.env.PORT || 5002;
 
-//Middleware
+// Middleware
 app.use(cors());
 app.use(express.json());
 
-//Conectar ao mongoDB
+// Conectar ao MongoDB
 mongoose.connect(process.env.MONGO_URI)
     .then(() => console.log('Conectado ao MongoDB'))
     .catch((error) => console.error('Erro ao conectar ao MongoDB:', error));
-// Rotas
-app.use('/products', productsRoutes);
 
+// Usando as rotas de produtos
+app.use('/products', productsRoutes);
 
 // Iniciar o servidor
 app.listen(PORT, () => {
