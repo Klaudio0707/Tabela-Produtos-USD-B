@@ -1,15 +1,99 @@
 {
   "products": [
     {
-      "id": 1737146779371,
-      "name": "Acido Ascorbico",
-      "manufacturer": "Shandong Luwei",
+      "id": 1737398649664,
+      "name": "Acido Ascórbico",
+      "manufacturer": "Luwei",
       "origin": "China",
-      "package": "25kg - Caixa",
+      "package": "CX 25kg",
       "currency": "USD",
-      "priceInside": "6.0000",
-      "priceOutside": "5.0000",
+      "priceInside": "6.32",
+      "priceOutside": "5.61",
       "ipi": false,
+      "ipiRate": 0
+    },
+    {
+      "id": 1737399689492,
+      "name": "Acido Cítrico",
+      "manufacturer": "Neocitrus",
+      "origin": "Turquia",
+      "package": "SC - 25kg",
+      "currency": "USD",
+      "priceInside": "2.77",
+      "priceOutside": "2.48",
+      "ipi": false,
+      "ipiRate": 0
+    },
+    {
+      "id": 1737399834907,
+      "name": "Acido Cítrico",
+      "manufacturer": "RZBC",
+      "origin": "china",
+      "package": "SC - 25kg",
+      "currency": "USD",
+      "priceInside": "2.85",
+      "priceOutside": "2.55",
+      "ipi": false,
+      "ipiRate": ""
+    },
+    {
+      "id": 1737399996746,
+      "name": "Corante Caramelo DPC",
+      "manufacturer": "EPA",
+      "origin": "Brasil",
+      "package": "tambor 265kg",
+      "currency": "BRL",
+      "priceInside": "7.70",
+      "priceOutside": "6.90",
+      "ipi": true,
+      "ipiRate": "3,25"
+    },
+    {
+      "id": 1737464712332,
+      "name": "teste",
+      "manufacturer": "teste",
+      "origin": "china",
+      "package": "saco",
+      "currency": "USD",
+      "priceInside": "2.00",
+      "priceOutside": "4.00",
+      "ipi": false,
+      "ipiRate": 0
+    },
+    {
+      "id": 1737464749451,
+      "name": "testre1",
+      "manufacturer": "teste1",
+      "origin": "china'",
+      "package": "2323",
+      "currency": "USD",
+      "priceInside": "2323.00",
+      "priceOutside": "2323.00",
+      "ipi": false,
+      "ipiRate": ""
+    },
+    {
+      "id": 1737465033863,
+      "name": "teste",
+      "manufacturer": "teste",
+      "origin": "teste",
+      "package": "teste",
+      "currency": "BRL",
+      "priceInside": "2.00",
+      "priceOutside": "5.00",
+      "ipi": false,
+      "ipiRate": ""
+    },
+    {
+      "id": 1738092679542,
+      "name": "aaa",
+      "manufacturer": "aqaaa",
+      "origin": "",
+      "package": "",
+      "currency": "BRL",
+      "priceInside": "0",
+      "priceOutside": "0",
+      "ipi": true,
       "ipiRate": 0
     }
   ]
