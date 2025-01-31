@@ -7,10 +7,46 @@
       "origin": "China",
       "package": "25kg - Caixa",
       "currency": "USD",
-      "priceInside": "6.0000",
+      "priceInside": "55",
       "priceOutside": "5.0000",
       "ipi": false,
       "ipiRate": 0
+    },
+    {
+      "id": 1737165299264,
+      "name": "fffff",
+      "manufacturer": "sss",
+      "origin": "",
+      "package": "",
+      "currency": "BRL",
+      "priceInside": "99.00",
+      "priceOutside": "55",
+      "ipi": false,
+      "ipiRate": 0
+    },
+    {
+      "id": 1737856509024,
+      "name": "aaa",
+      "manufacturer": "aa",
+      "origin": "aa",
+      "package": "aa",
+      "currency": "USD",
+      "priceInside": "12.00",
+      "priceOutside": "12.00",
+      "ipi": false,
+      "ipiRate": 0
+    },
+    {
+      "id": 1737856539512,
+      "name": "aa",
+      "manufacturer": "bb",
+      "origin": "cc",
+      "package": "23",
+      "currency": "USD",
+      "priceInside": "3.00",
+      "priceOutside": "7.00",
+      "ipi": false,
+      "ipiRate": ""
     }
   ]
 }
