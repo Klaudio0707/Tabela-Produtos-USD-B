@@ -28,7 +28,7 @@
     "lowdb": "^7.0.1",
     "milliparsec": "^4.0.0",
     "mime": "^4.0.4",
-    "mongoose": "^8.9.5",
+    "mongoose": "^8.9.6",
     "mrmime": "^2.0.0",
     "negotiator": "^0.6.4",
     "readdirp": "^4.1.1",
