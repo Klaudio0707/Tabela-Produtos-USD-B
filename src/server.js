@@ -12,7 +12,7 @@ const FRONT_URL = process.env.FRONT_URL;
 
 // Middleware
 app.use(cors({
-    origin: FRONT_URL || "*", // Substitua pela URL do frontend
+    origin: "*", // Substitua pela URL do frontend
     methods: ["GET", "POST", "PUT", "DELETE"], // Métodos permitidos
     allowedHeaders: ["Content-Type", "Authorization"], // Cabeçalhos permitidos
   })
