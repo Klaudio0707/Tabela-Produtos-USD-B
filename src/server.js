@@ -8,10 +8,11 @@ const productsRoutes = require('./routes/products');
 
 const app = express();
 const PORT = process.env.PORT || 5002;
+const FRONT_URL = process.env.FRONT_URL;
 
 // Middleware
 app.use(cors({
-    origin: "https://sua-url-frontend.com", // Substitua pela URL do frontend
+    origin: FRONT_URL, // Substitua pela URL do frontend
     methods: ["GET", "POST", "PUT", "DELETE"], // Métodos permitidos
     allowedHeaders: ["Content-Type", "Authorization"], // Cabeçalhos permitidos
   })
