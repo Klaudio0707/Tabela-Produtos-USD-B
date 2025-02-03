@@ -7,12 +7,12 @@ require('dotenv').config();
 const productsRoutes = require('./routes/products');
 
 const app = express();
-const PORT = process.env.PORT || 1000;
+const PORT = process.env.PORT;
 const FRONT_URL = process.env.FRONT_URL;
 
 // Middleware
 app.use(cors({
-    origin: "*", // Substitua pela URL do frontend
+    origin: "*", // Aceitando qualquer requisição
     methods: ["GET", "POST", "PUT", "DELETE"], // Métodos permitidos
     allowedHeaders: ["Content-Type", "Authorization"], // Cabeçalhos permitidos
   })
