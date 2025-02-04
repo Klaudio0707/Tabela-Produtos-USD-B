@@ -1,16 +1,25 @@
 const mongoose = require('mongoose');
 
 const productSchema = new mongoose.Schema({
-    name: { type: String, required: true },
-    manufacturer: { type: String, required: true },
-    origin: { type: String }, // campo opcional.
-    package: { type: String }, // campo opcional.
-    currency: { type: String, enum: ['BRL', 'USD'], default: 'BRL' }, // Aceita apenas BRL ou USD
-    priceInside: { type: Number, required: true }, // valor numérico obrigatório.
-    priceOutside: { type: Number }, // valor numérico opcional.
-    ipi: { type: Boolean, default: false }, // booleano para indicar se tem IPi.
-    ipiRate: { type: Number, default: 0 }, // taxa de IPI (em %), padrão 0.
-    createdAt: { type: Date, default: Date.now }, // Data de criação
+  name: { type: String, required: true, trim: true, index: true },
+  manufacturer: { type: String, required: true, trim: true, index: true },
+  origin: { type: String, trim: true }, // campo opcional.
+  package: { type: String, trim: true }, // campo opcional.
+  currency: { type: String, enum: ['BRL', 'USD'], default: 'BRL' }, // Aceita apenas BRL ou USD.
+  priceInside: { type: Number, required: true, min: 0 }, // valor numérico obrigatório.
+  priceOutside: { type: Number, min: 0 }, // valor numérico opcional e positivo.
+  ipi: { type: Boolean, default: false }, // booleano para indicar se tem IPI.
+  ipiRate: { 
+    type: Number, 
+    default: 0,
+    validate: {
+      validator: function(value) {
+        return this.ipi ? value > 0 : true;
+      },
+      message: 'ipiRate deve ser maior que 0 quando ipi for verdadeiro.',
+    },
+  },
+  createdAt: { type: Date, default: Date.now }, // Data de criação.
 });
 
 module.exports = mongoose.model('Product', productSchema);

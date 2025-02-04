@@ -8,7 +8,7 @@ const productsRoutes = require('./routes/products');
 
 const app = express();
 const PORT = process.env.PORT;
-const FRONT_URL = process.env.FRONT_URL;
+
 
 // Middleware
 app.use(cors({

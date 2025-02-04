@@ -64,7 +64,7 @@ router.put('/:id', async (req, res) => {
     });
 
     if (!updatedProduct) { //caso o produto não seja encontrado ou atualizado
-      return res.status(404).json({ message: 'produto não encontrad' });
+      return res.status(404).json({ message: 'produto não encontrado' });
 
     }
     res.status(200).json(updatedProduct); // retorna o produto já atualizadp
