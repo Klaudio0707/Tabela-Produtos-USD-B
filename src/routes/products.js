@@ -18,16 +18,18 @@ router.get('/', async (req, res) => {
 
 // Rota POST para adicionar um novo produto
 router.post('/', async (req, res) => {
-  const { name, manufacturer, priceInside, priceOutside, currency, ipi, ipiRate } = req.body;
+  const { name, manufacturer,origin, package, priceInside, priceOutside, currency, ipi, ipiRate } = req.body;
   try {
     const newProduct = new Product({
       name,
       manufacturer,
+      origin,
+      package,
       priceInside,
       priceOutside,
       currency,
       ipi,
-      ipiRate
+      ipiRate,
     });
 
     await newProduct.save();  // Salva o novo produto no banco de dados
@@ -50,6 +52,8 @@ router.put('/:id', async (req, res) => {
   const updates = {
     name,
     manufacturer,
+    origin,
+    package,
     priceInside,
     priceOutside,
     currency,
