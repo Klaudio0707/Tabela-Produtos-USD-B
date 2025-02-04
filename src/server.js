@@ -23,13 +23,20 @@ app.use(express.json());
 
 // Conectar ao MongoDB
 mongoose.connect(process.env.MONGO_URI)
-    .then(() => console.log('Conectado ao MongoDB'))
-    .catch((error) => console.error('Erro ao conectar ao MongoDB:', error));
+    .then(() => console.log('✅ Conectado ao MongoDB'))
+    .catch((error) => console.error('❌ Erro ao conectar ao MongoDB:', error));
 
-// Usando as rotas de produtos
+// Rotas de produtos
 app.use('/products', productsRoutes);
+
+// Middleware de erros globais
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).json({ error: 'Ocorreu um erro no servidor' });
+});
 
 // Iniciar o servidor
 app.listen(PORT, () => {
-    console.log(`Servidor rodando na porta ${PORT}`);
+    console.log(`🚀 Servidor rodando em http://localhost:${PORT}`);
+    console.log(`🌐 Frontend permitido: ${FRONT_URL}`);
 });
