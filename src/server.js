@@ -9,10 +9,11 @@ const productsRoutes = require('./routes/products');
 const app = express();
 const PORT = process.env.PORT;
 const FRONT_URL = process.env.FRONT_URL;
+const DESENVOLVIMENTO_URL = process.env.DESENVOLVIMENTO_URL;
 
 // Middleware
 app.use(cors({
-    origin: FRONT_URL, // Aceitando qualquer requisição
+    origin: FRONT_URL || DESENVOLVIMENTO_URL, // Aceitando qualquer requisição
     methods: ["GET", "POST", "PUT", "DELETE"], // Métodos permitidos
     allowedHeaders: ["Content-Type", "Authorization"], // Cabeçalhos permitidos
   })
