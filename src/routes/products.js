@@ -46,7 +46,7 @@ router.put('/:id', async (req, res) => {
 
   //verifica se todos os dados necessários estão presentes no body, no corpo
   if (!name || !manufacturer || !priceInside || !priceOutside || !currency) {
-    return res.status(400).json({ message: 'Dadps insulficientes para atualizar o produto.' });
+    return res.status(400).json({ message: 'Dados insulficientes para atualizar o produto.' });
 
   }
   const updates = {
