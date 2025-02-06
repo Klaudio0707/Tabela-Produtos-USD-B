@@ -18,16 +18,18 @@ router.get('/', async (req, res) => {
 
 // Rota POST para adicionar um novo produto
 router.post('/', async (req, res) => {
-  const { name, manufacturer, priceInside, priceOutside, currency, ipi, ipiRate } = req.body;
+  const { name, manufacturer, origin, package, priceInside, priceOutside, currency, ipi, ipiRate } = req.body;
   try {
     const newProduct = new Product({
       name,
       manufacturer,
+      origin,
+      package,
       priceInside,
       priceOutside,
       currency,
       ipi,
-      ipiRate
+      ipiRate,
     });
 
     await newProduct.save();  // Salva o novo produto no banco de dados
@@ -40,16 +42,18 @@ router.post('/', async (req, res) => {
 // Rota PUT para atualizar um produto existente
 router.put('/:id', async (req, res) => {
   const { id } = req.params;
-  const { name, manufacturer, priceInside, priceOutside, currency, ipi, ipiRate } = req.body;
+  const { name, manufacturer, origin, package, priceInside, priceOutside, currency, ipi, ipiRate } = req.body;
 
   //verifica se todos os dados necessários estão presentes no body, no corpo
   if (!name || !manufacturer || !priceInside || !priceOutside || !currency) {
-    return res.status(400).json({ message: 'Dadps insulficientes para atualizar o produto.' });
+    return res.status(400).json({ message: 'Dados insulficientes para atualizar o produto.' });
 
   }
   const updates = {
     name,
     manufacturer,
+    origin,
+    package,
     priceInside,
     priceOutside,
     currency,

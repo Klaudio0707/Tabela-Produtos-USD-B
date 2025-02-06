@@ -19,7 +19,6 @@
     "es-escape-html": "^0.1.1",
     "eta": "^3.5.0",
     "express": "^4.21.2",
-    "express-rate-limit": "^7.5.0",
     "express-session": "^1.18.1",
     "fs": "^0.0.1-security",
     "header-range-parser": "^1.1.3",
