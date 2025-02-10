@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const user = require('../models/user');
+const User = require('../models/user');
 
 exports.login = async (req, res) => {
     const { username, password } = req.body;
@@ -21,5 +21,30 @@ exports.login = async (req, res) => {
     } catch (err) {
         res.status(500).json({ message: 'Erro no servidor' });
 
+    }
+};
+exports.register = async (req, res) => {
+const {username, password} = req.body;
+try{
+    const existingUser = await User.findOne({username});
+    if(existingUser){
+        return res.status(400).json({message: 'Usuário já existe'});
+
+    }
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const newUser = new User({ username, password: hashedPassword});
+    await newUser.save();
+    res.status(201).json({message: 'Usuário registrado com sucesso!'});
+} catch (err) {
+    res.status(5001).json({messaage: 'Erro ao registrar usuário', error: err.message });
+}
+
+}
+exports.getAllUsers = async (req, res) => {
+    try {
+        const users = await User.find({}, '-password'); // Exclui o campo de senha
+        res.status(200).json(users);
+    } catch (error) {
+        res.status(500).json({ message: 'Erro ao buscar usuários', error });
     }
 };
