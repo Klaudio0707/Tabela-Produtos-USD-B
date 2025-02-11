@@ -1,5 +1,6 @@
 const express = require('express');
 const { login, register, getAllUsers } = require('../controllers/authController');
+const authenticateToken = require('../middleware/authenticateToken');
 
 const router = express.Router();
 
@@ -10,6 +11,6 @@ router.post('/login', login);
 router.post('/register', register);
 
 // Rota para listar todos os usuários
-router.get('/users', getAllUsers);
+router.get('/users', getAllUsers, authenticateToken);
 
 module.exports = router;
