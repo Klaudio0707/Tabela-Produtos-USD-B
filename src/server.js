@@ -1,29 +1,24 @@
 const express = require("express");
 const cors = require("cors");
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-// const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
 const connectDB = require("./database/database");
-
-
 connectDB();
 
 // Importando as rotas de produtos e login
-const authRoutes  = require('./routes/authRoutes')
+const authRoutes = require("./routes/authRoutes");
 const productsRoutes = require("./routes/products");
-
 
 const app = express();
 const PORT = process.env.PORT;
 const FRONT_URL = process.env.FRONT_URL;
 
-
 // Middleware
 app.use(
   cors({
-    origin:'*', // Aceitando Só o frontend
+    origin: "*", // Aceitando Só o frontend
     methods: ["GET", "POST", "PUT", "DELETE"], // Métodos permitidos
     allowedHeaders: ["Content-Type", "Authorization"], // Cabeçalhos permitidos
   })
@@ -31,11 +26,8 @@ app.use(
 
 app.use(express.json());
 
-
 //rotas de login, register e get users
-app.use('/auth', authRoutes);
-
-
+app.use("/auth", authRoutes);
 // Rotas de produtos
 app.use("/products", productsRoutes);
 
@@ -44,10 +36,6 @@ app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).json({ error: "Ocorreu um erro no servidor" });
 });
-
-
-
-
 
 // Iniciar o servidor
 app.listen(PORT, () => {
