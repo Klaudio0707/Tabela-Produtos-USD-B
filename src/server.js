@@ -2,8 +2,13 @@ const express = require("express");
 const cors = require("cors");
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const mongoose = require("mongoose");
+// const mongoose = require("mongoose");
 require("dotenv").config();
+
+const connectDB = require("./database/database");
+
+
+connectDB();
 
 // Importando as rotas de produtos e login
 const authRoutes  = require('./routes/authRoutes')
@@ -25,13 +30,6 @@ app.use(
 );
 
 app.use(express.json());
-
-// Conectar ao MongoDB
-mongoose
-  .connect(process.env.MONGO_URI)
-  .then(() => console.log("✅ Conectado ao MongoDB"))
-  .catch((error) => console.error("❌ Erro ao conectar ao MongoDB:", error));
-
 
 
 //rotas de login, register e get users
