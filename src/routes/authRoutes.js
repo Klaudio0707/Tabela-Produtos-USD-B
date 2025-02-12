@@ -40,7 +40,7 @@ router.post("/login", async (req, res) => {
 
 // Rota para registro
 router.post("/register", async (req, res) => {
-  const { username, password } = req.body;
+  const { username, password, email, empresa, permiss} = req.body;
 
   try {
     // Validação de campos obrigatórios
@@ -51,8 +51,7 @@ router.post("/register", async (req, res) => {
     }
 
     // Validação de comprimento mínimo da senha
-    if (password.length < 8) {
-      return res
+    if (password.length < 8) {      return res
         .status(400)
         .json({ message: "A senha deve ter pelo menos 8 caracteres." });
     }
@@ -69,7 +68,7 @@ router.post("/register", async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     // Criar e salvar o novo usuário
-    const newUser = new User({ username, password: hashedPassword });
+    const newUser = new User({ username, email, empresa, permiss, password:  hashedPassword });
     await newUser.save();
 
     // Retornar mensagem de sucesso
