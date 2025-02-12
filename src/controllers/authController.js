@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 
 exports.login = async (req, res) => {
-  const { username, password } = req.body;
+  const { username, email, permiss, password } = req.body;
 
   try {
     const user = await User.findOne({ username });
@@ -23,18 +23,19 @@ exports.login = async (req, res) => {
       .status(200)
       .json({ token: "Parabéns, Usuário logado com sucesso " + token });
   } catch (err) {
-    res.status(500).json({ message: "Erro no servidor", error: err.message });
+   res.status(500).json({ message: "Erro no servidor", error: err.message });
+    
   }
 };
 
 // Registro de um novo usuário
 exports.register = async (req, res) => {
-  const { username, password } = req.body;
+  const { username, email, empresa, permiss, password  } = req.body;
   try {
-    if (!username || !password) {
+    if (!username || !password|| !email || !permiss || !empresa) {
       return res
         .status(400)
-        .json({ message: "Nome de usuário e senha são obrigatorios" });
+        .json({ message: "Nome de usuário, email,empresa e tipo e senha são obrigatorios" });
     }
     if (password.length < 8) {
       return res
@@ -48,7 +49,7 @@ exports.register = async (req, res) => {
     }
     //Criar senha com hash
     const hashedPassword = await bcrypt.hash(password, 10);
-    const newUser = new User({ username, password: hashedPassword });
+    const newUser = new User({ username, email, empresa, permiss, password: hashedPassword });
     await newUser.save();
     res.status(201).json({ message: "Usuário registrado com sucesso!" });
   } catch (err) {
