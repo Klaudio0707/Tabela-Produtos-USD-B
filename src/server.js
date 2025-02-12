@@ -11,15 +11,18 @@ connectDB();
 const authRoutes = require("./routes/authRoutes");
 const productsRoutes = require("./routes/products");
 
+//instancia do express para criar o servidor
 const app = express();
+
+//variveis de ambiente
 const PORT = process.env.PORT;
 const FRONT_URL = process.env.FRONT_URL;
 
 // Middleware
 app.use(
   cors({
-    origin: "*", // Aceitando Só o frontend
-    methods: ["GET", "POST", "PUT", "DELETE"], // Métodos permitidos
+    origin: "*", // allowed origin - qualquer origem permitida
+    methods: ["GET", "POST", "PUT", "DELETE"], // Métodos permitidos de requisições
     allowedHeaders: ["Content-Type", "Authorization"], // Cabeçalhos permitidos
   })
 );

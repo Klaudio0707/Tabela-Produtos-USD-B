@@ -19,11 +19,11 @@ router.post("/login", async (req, res) => {
     if (!user) {
       return res
         .status(401)
-        .json({ message: "Usuário não Cadastrado ou não Encontrado" });
+        .json({ message: "Senha ou Usuário Incorreto" });
     }
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) {
-      return res.status(401).json({ message: " Senha inválida" });
+      return res.status(401).json({ message: " Senha ou Usuário Incorreto" });
     }
     // Gerar o token JWT
     const token = jwt.sign(
