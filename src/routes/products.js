@@ -1,5 +1,5 @@
 const express = require('express');
-const Product = require('../models/products');  // Caminho correto do seu modelo
+const Product = require('../models/products');
 const router = express.Router();
 
 // Rota GET para retornar todos os produtos
@@ -44,7 +44,7 @@ router.put('/:id', async (req, res) => {
   const { id } = req.params;
   const { name, manufacturer, origin, package, priceInside, priceOutside, currency, ipi, ipiRate } = req.body;
 
-  //verifica se todos os dados necessários estão presentes no body, no corpo
+  
   if (!name || !manufacturer || !priceInside || !priceOutside || !currency) {
     return res.status(400).json({ message: 'Dados insulficientes para atualizar o produto.' });
 
