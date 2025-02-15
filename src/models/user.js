@@ -12,6 +12,7 @@ const UserSchema = new mongoose.Schema({
       message: "O valor de 'permiss' deve ser 'admin', 'user' ou 'guest'"
     }
   },
+  
   password: {
     type: String,
     required: [true, "O campo 'password' é obrigatório"],
