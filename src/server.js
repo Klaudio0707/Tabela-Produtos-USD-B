@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const cookieParser = require("cookie-parser");
 require("dotenv").config();
 
 const connectDB = require("./database/database");
@@ -19,13 +20,15 @@ const FRONT_URL = process.env.FRONT_URL;
 // Middleware
 app.use(
   cors({
-    origin: "*", // aceitando apenas a url do frontend
+    origin: FRONT_URL, // Permite que o frontend em localhost:3000 faça requisições
     methods: ["GET", "POST", "PUT", "DELETE"], // Métodos permitidos de requisições
     allowedHeaders: ["Content-Type", "Authorization"], // Cabeçalhos permitidos
+    credentials: true, // Permite o uso de cookies e credenciais
   })
 );
 
 app.use(express.json());
+app.use(cookieParser());
 
 //rotas de login, register e get users
 app.use("/auth", authRoutes);

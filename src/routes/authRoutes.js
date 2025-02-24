@@ -31,11 +31,22 @@ router.post("/login", async (req, res) => {
       process.env.JWT_SECRET,
       { expiresIn: "1h" }
     );
+    res.cookie("authToken", token, {
+      httpOnly: true,  // Impede acesso do JavaScript ao cookie
+      secure: process.env.NODE_ENV === "production", // Só usa em HTTPS em produção
+      maxAge: 24 * 60 * 60 * 1000, // Tempo de expiração do cookie (1 dia)
+    });
+
+
     res.status(200).json({ token });
   } catch (error) {
     console.error("Erro no login:", error);
     res.status(500).json({ message: "Erro no servidor" });
   }
+});
+router.post("/logout", (req, res) => {
+  res.clearCookie("authToken");
+  res.status(200).json({ message: "Logout bem-sucedido!" });
 });
 
 // Rota para registro
@@ -86,5 +97,23 @@ router.post("/register", async (req, res) => {
 
 // Rota para listar todos os usuários
 router.get("/users", getAllUsers, authenticateToken);
+
+// Middleware para verificar o token
+router.get('/verify-token', (req, res) => {
+  const token = req.cookies.authToken; // Obtém o token do cookie
+
+  if (!token) {
+    return res.status(401).json({ isValid: false }); // Token não encontrado
+  }
+
+  jwt.verify(token, process.env.JWT_SECRET, (err) => {
+    if (err) {
+      return res.status(403).json({ isValid: false }); // Token inválido ou expirado
+    }
+    res.status(200).json({ isValid: true }); // Token válido
+  });
+});
+
+
 
 module.exports = router;

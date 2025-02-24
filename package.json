@@ -13,6 +13,7 @@
     "chalk": "^5.4.1",
     "chokidar": "^4.0.3",
     "colorette": "^2.0.20",
+    "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "dayjs": "^1.11.13",
     "dot-prop": "^9.0.0",
