@@ -43,7 +43,7 @@ router.post("/logout", (req, res) => {
 
 // Rota para registro
 router.post("/register", async (req, res) => {
-  const { username, password, email, cnpj, empresaNome, permiss, isActive } = req.body;
+  const { username, password, email, cnpj, companyName, permiss, isActive } = req.body;
   try {
     if (!username || !password || !email || !cnpj) {
       return res.status(400).json({
@@ -62,7 +62,7 @@ router.post("/register", async (req, res) => {
       username,
       email,
       cnpj,
-      companyName: empresaNome || cnpj,
+      companyName: companyName || cnpj,
       isActive: typeof isActive === "boolean" ? isActive : true,
       permiss,
       password: hashedPassword,
@@ -102,7 +102,7 @@ router.put("/users/me", authenticateToken, async (req, res) => {
     user.username = username || user.username;
     user.email = email || user.email;
     user.cnpj = cnpj || user.cnpj;
-    user.companyName = empresaNome || user.companyName;
+    user.companyName = companyName || user.companyName;
     user.permiss = permiss || user.permiss;
     if (password) {
       user.password = await bcrypt.hash(password, 10);
@@ -125,16 +125,16 @@ router.put("/users/me", authenticateToken, async (req, res) => {
 });
 
 // Middleware para verificar o token
-router.get('/verify-token', (req, res) => {
+router.get("/verify-token", (req, res) => {
   const token = req.cookies.authToken;
   if (!token) {
-    return res.status(401).json({ isValid: false });
+    return res.status(401).json({ isValid: false, message: "Token não encontrado." });
   }
-  jwt.verify(token, process.env.JWT_SECRET, (err) => {
+  jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
     if (err) {
-      return res.status(403).json({ isValid: false });
+      return res.status(403).json({ isValid: false, message: "Token inválido ou expirado." });
     }
-    res.status(200).json({ isValid: true });
+    res.status(200).json({ isValid: true, user: decoded });
   });
 });
 

@@ -64,7 +64,7 @@ exports.register = async (req, res) => {
       username,
       email,
       cnpj,
-      empresaNome: _empresaNome,
+      companyName: _companyName,
       isActive: _isActive,
       permiss,
       password: hashedPassword,

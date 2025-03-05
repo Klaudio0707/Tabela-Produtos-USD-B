@@ -5,7 +5,7 @@ const UserSchema = new mongoose.Schema({
     type: String,required: [true, "O campo 'username' é obrigatório"], unique: true },
   email: { type: String, required: [true, "O campo 'email' é obrigatório"],unique: true},
   cnpj: { type: String, required: [true, "O campo 'CNPJ' é obrigatório"] },
-  empresaNome: { type: String, required: [true, "O campo 'Nome da Empresa' é obrigatório"]},
+  companyName: { type: String, required: [true, "O campo 'Nome da Empresa' é obrigatório"]},
   isActive: { type: Boolean, default: true, required: [true, "O campo 'isActive' é obrigatório"]},
   permiss: {
     type: String,required: [true, "O campo 'permiss' é obrigatório"],
