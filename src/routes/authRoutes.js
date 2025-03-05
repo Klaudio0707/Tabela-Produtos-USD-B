@@ -93,7 +93,7 @@ router.get("/users/me", authenticateToken, async (req, res) => {
 
 // Rota para atualizar o perfil do usuário autenticado
 router.put("/users/me", authenticateToken, async (req, res) => {
-  const { username, email, cnpj, empresaNome, permiss, password } = req.body;
+  const { username, email, cnpj, companyName, permiss, password } = req.body;
   try {
     const user = await User.findById(req.user.id);
     if (!user) {
@@ -108,6 +108,7 @@ router.put("/users/me", authenticateToken, async (req, res) => {
       user.password = await bcrypt.hash(password, 10);
     }
     await user.save();
+    
     res.status(200).json({
       message: "Perfil atualizado com sucesso.",
       user: {
@@ -120,6 +121,7 @@ router.put("/users/me", authenticateToken, async (req, res) => {
       },
     });
   } catch (error) {
+    console.error("Erro ao atualizar perfil:", error);
     res.status(500).json({ message: "Erro ao atualizar perfil", error: error.message });
   }
 });

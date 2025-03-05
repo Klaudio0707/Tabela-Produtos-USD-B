@@ -129,7 +129,7 @@ exports.updateUserProfile = async (req, res) => {
 // Obter todos os usuários (para fins administrativos)
 exports.getAllUsers = async (req, res) => {
   try {
-    const users = await User.find().select("username email cnpj empresaNome permiss isActive");
+    const users = await User.find().select("username email cnpj companyName permiss isActive");
     res.status(200).json(users);
   } catch (err) {
     console.error(`Erro ao buscar usuários: ${err.message}`);
