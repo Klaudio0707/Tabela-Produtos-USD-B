@@ -1,13 +1,13 @@
 const express = require("express");
 const cors = require("cors");
-const cookieParser = require("cookie-parser");
+// const cookieParser = require("cookie-parser");
 require("dotenv").config();
 
 const connectDB = require("./database/database");
 connectDB();
 
 // Importando as rotas de produtos e login
-const authRoutes = require("./routes/authRoutes");
+// const authRoutes = require("./routes/authRoutes");
 const productsRoutes = require("./routes/products");
 
 //instancia do express para criar o servidor
@@ -28,10 +28,10 @@ app.use(
 );
 
 app.use(express.json());
-app.use(cookieParser());
+// app.use(cookieParser());
 
 //rotas de login, register e get users
-app.use("/auth", authRoutes);
+// app.use("/auth", authRoutes);
 // Rotas de produtos
 app.use("/products", productsRoutes);
 

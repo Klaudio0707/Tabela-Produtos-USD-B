@@ -32,7 +32,7 @@ exports.login = async (req, res) => {
 
 // Registro de um novo usuário
 exports.register = async (req, res) => {
-  const { username, password, email, cnpj, permiss, empresaNome, isActive } = req.body;
+  const { username, password, email, cnpj, permiss, companyName, isActive } = req.body;
 
   try {
     // Validação dos campos obrigatórios
@@ -52,7 +52,7 @@ exports.register = async (req, res) => {
     }
 
     // Se empresaNome não for enviado, utiliza o próprio CNPJ
-    const _empresaNome = empresaNome || cnpj;
+    const _companyName = companyName || cnpj;
     // Se isActive não for enviado, define false (ajuste conforme sua regra de negócio)
     const _isActive = typeof isActive === "boolean" ? isActive : false;
 
@@ -94,7 +94,7 @@ exports.getUserProfile = async (req, res) => {
 
 // Atualizar os dados do usuário autenticado
 exports.updateUserProfile = async (req, res) => {
-  const { username, email, cnpj, empresaNome, permiss, password } = req.body;
+  const { username, email, cnpj, companyName, permiss, password } = req.body;
   try {
     const user = await User.findById(req.user.id);
     if (!user) {
@@ -104,7 +104,7 @@ exports.updateUserProfile = async (req, res) => {
     user.username = username || user.username;
     user.email = email || user.email;
     user.cnpj = cnpj || user.cnpj;
-    user.empresaNome = empresaNome || user.empresaNome;
+    user.companyName = companyName || user.companyName;
     user.permiss = permiss || user.permiss;
     if (password) {
       user.password = await bcrypt.hash(password, SALT_ROUNDS);
@@ -116,7 +116,7 @@ exports.updateUserProfile = async (req, res) => {
         username: user.username,
         email: user.email,
         cnpj: user.cnpj,
-        empresaNome: user.empresaNome,
+        companyName: user.companyName,
         permiss: user.permiss,
         isActive: user.isActive,
       },
