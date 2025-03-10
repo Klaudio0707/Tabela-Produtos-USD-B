@@ -1,16 +1,14 @@
 const express = require("express");
 const cors = require("cors");
-// const cookieParser = require("cookie-parser");
 require("dotenv").config();
-
-const connectDB = require("./database/database");
-connectDB();
-
-// Importando as rotas de produtos e login
+// const cookieParser = require("cookie-parser");
 // const authRoutes = require("./routes/authRoutes");
 const productsRoutes = require("./routes/products");
+const connectDB = require("./database/database");
 
-//instancia do express para criar o servidor
+connectDB();
+
+
 const app = express();
 
 //variveis de ambiente
@@ -20,10 +18,10 @@ const FRONT_URL = process.env.FRONT_URL;
 // Middleware
 app.use(
   cors({
-    origin: FRONT_URL, // Permite que o frontend em localhost:3000 faça requisições
-    methods: ["GET", "POST", "PUT", "DELETE"], // Métodos permitidos de requisições
-    allowedHeaders: ["Content-Type", "Authorization"], // Cabeçalhos permitidos
-    credentials: true, // Permite o uso de cookies e credenciais
+    origin: FRONT_URL, 
+    methods: ["GET", "POST", "PUT", "DELETE"], 
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true, 
   })
 );
 

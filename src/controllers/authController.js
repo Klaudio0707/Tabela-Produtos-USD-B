@@ -12,7 +12,7 @@ exports.login = async (req, res) => {
   try {
     const user = await User.findOne({ username });
     if (!user) {
-      return res.status(404).json({ message: "Usuário não encontrado." });
+      return res.status(404).json({ message: "usuário não encontrado." });
     }
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
@@ -32,17 +32,22 @@ exports.login = async (req, res) => {
 
 // Registro de um novo usuário
 exports.register = async (req, res) => {
-  const { username, password, email, cnpj, permiss, companyName, isActive } = req.body;
+  const { username, password, email, cnpj, permiss, companyName, isActive } =
+    req.body;
 
   try {
     // Validação dos campos obrigatórios
     if (!username || !password || !email || !cnpj) {
       return res
         .status(400)
-        .json({ message: "Os campos username, senha, email e CNPJ são obrigatórios." });
+        .json({
+          message: "Os campos username, senha, email e CNPJ são obrigatórios.",
+        });
     }
     if (password.length < 8) {
-      return res.status(400).json({ message: "A senha deve ter pelo menos 8 caracteres." });
+      return res
+        .status(400)
+        .json({ message: "A senha deve ter pelo menos 8 caracteres." });
     }
 
     // Verificar se o usuário já existe
@@ -74,7 +79,9 @@ exports.register = async (req, res) => {
     res.status(201).json({ message: "Usuário registrado com sucesso!" });
   } catch (err) {
     console.error(`Erro ao registrar usuário: ${err.message}`);
-    res.status(500).json({ message: "Erro ao registrar usuário", error: err.message });
+    res
+      .status(500)
+      .json({ message: "Erro ao registrar usuário", error: err.message });
   }
 };
 
@@ -88,7 +95,9 @@ exports.getUserProfile = async (req, res) => {
     }
     res.status(200).json(user);
   } catch (error) {
-    res.status(500).json({ message: "Erro ao buscar perfil", error: error.message });
+    res
+      .status(500)
+      .json({ message: "Erro ao buscar perfil", error: error.message });
   }
 };
 
@@ -122,18 +131,23 @@ exports.updateUserProfile = async (req, res) => {
       },
     });
   } catch (error) {
-    res.status(500).json({ message: "Erro ao atualizar perfil", error: error.message });
+    res
+      .status(500)
+      .json({ message: "Erro ao atualizar perfil", error: error.message });
   }
 };
 
 // Obter todos os usuários (para fins administrativos)
 exports.getAllUsers = async (req, res) => {
   try {
-    const users = await User.find().select("username email cnpj companyName permiss isActive");
+    const users = await User.find().select(
+      "username email cnpj companyName permiss isActive"
+    );
     res.status(200).json(users);
   } catch (err) {
     console.error(`Erro ao buscar usuários: ${err.message}`);
-    res.status(500).json({ message: "Erro ao buscar usuários.", error: err.message });
+    res
+      .status(500)
+      .json({ message: "Erro ao buscar usuários.", error: err.message });
   }
 };
-
